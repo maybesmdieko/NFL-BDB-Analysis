@@ -2,7 +2,7 @@
 
 Does the speed a wide receiver gains in the half-second after a Combine slant cut help predict how much space he creates against NFL man coverage as a rookie? Across two draft-class tests, adding post-cut speed gain to a forecast based on 40-yard dash time increased average error.
 
-[Illustrated findings](slant/research-writeup.md) · [Executed notebook](slant/slant-study.ipynb) · [Word report](slant/Combine_Slant_Research.docx) · [Kaggle writeup](https://www.kaggle.com/competitions/nfl-big-data-bowl-2027/writeups/from-combine-slants-to-nfl-separation-does-speed)
+[Illustrated findings](slant/research-writeup.md) · [Executed notebook](slant/slant-study.ipynb) · [Word report](slant/Combine_Slant_Research.docx) · [Kaggle writeup](https://kaggle.com/competitions/nfl-big-data-bowl-2027/writeups/from-combine-slants-to-nfl-separation-does-speed)
 
 ## Results
 
