@@ -38,6 +38,8 @@ Adding post-turn gain improved the forecast for four of the 15 receivers. I remo
 
 I also moved the evaluation back one year. I computed route norms and trained on 18 eligible 2023 receivers, then tested on 17 receivers from 2024. Average errors were 0.206 yards for the training mean, 0.202 for dash time and 0.218 for dash plus gain. Dash time narrowly beat the mean that year. Adding burst made the dash forecast worse in both years. This retrospective check reuses draft classes and the same research design.
 
+![Adding gain increased mean absolute error in both the 2024 and 2025 rookie classes.](two-class-errors.svg)
+
 ## Does the result change on NFL slants?
 
 Across the linked receivers, 335 rookie slants against man coverage had a separation measurement. Requiring five slants per player left 23 training receivers and seven test receivers. Requiring ten left just one test receiver. At the five-route threshold, the average error was 0.475 yards for the training mean, 0.676 for dash time and 0.669 for dash plus gain. After adjusting for the defender’s starting cushion, adding gain improved on dash time by only 0.002 yards. With seven receivers, this is an exploratory finding.

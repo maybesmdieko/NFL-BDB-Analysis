@@ -1,35 +1,32 @@
-# 2027 NFL Big Data Bowl | Wide receiver separation
+# From Combine slants to NFL separation
 
-The 2027 NFL Big Data Bowl asks which traits measured at the NFL Scouting Combine carry over to regular-season performance. Participants can follow a prospect from drills tracked ten times per second to plays in NFL games. My project focuses on wide receivers and a question that matters to scouts: **what can we learn at the Combine about a receiver’s ability to get open against man coverage?**
+Does the speed a wide receiver gains in the half-second after a Combine slant cut help predict how much space he creates against NFL man coverage as a rookie? Across two draft-class tests, adding post-cut speed gain to a forecast based on 40-yard dash time increased average error.
 
-[Official NFL overview](https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl) · [Competition and data on Kaggle](https://www.kaggle.com/competitions/nfl-big-data-bowl-2027)
+[Illustrated findings](slant/research-writeup.md) · [Executed notebook](slant/slant-study.ipynb) · [Word report](slant/Combine_Slant_Research.docx) · [Kaggle writeup](https://www.kaggle.com/competitions/nfl-big-data-bowl-2027/writeups/from-combine-slants-to-nfl-separation-does-speed)
 
-## First experiment
+## Results
 
-I started with the 40-yard dash. For each receiver, I measured their median distance from a defender when the quarterback released the pass on eligible rookie routes against man coverage. I used the 2023 and 2024 draft classes to build two forecasts: one gave every receiver the training-group average, and the other used the receiver’s dash time. I tested both on the 2025 draft class.
+The analysis measures speed gain on 110 Combine left-slant attempts tracked at 10 Hz. The NFL outcome is each receiver’s median separation at pass release relative to the typical separation for the routes he ran. Each receiver had at least 20 eligible rookie routes and counted once. Models used earlier draft classes to forecast a later class.
 
-Among the 15 rookies with at least 20 measured routes, the average forecast missed by **0.209 yards per receiver**. Adding dash time increased the error to **0.246 yards**. The simpler forecast also performed better at minimums of 10 and 30 routes. For this group, straight-line speed alone added little information about who would get open.
+| Test class | Training / test receivers | Training average | Dash time | Dash + speed gain |
+|---|---:|---:|---:|---:|
+| 2024 | 18 / 17 | 0.206 | 0.202 | 0.218 |
+| 2025 | 35 / 15 | 0.135 | 0.162 | 0.175 |
 
-## Next experiment
+Values are mean absolute errors in yards per receiver. Lower is better. In 2025, adding gain helped four of 15 receivers. The small sample leaves uncertainty about future classes.
 
-A receiver often has to change direction to get open. I’d use the Combine sensor data to measure how quickly each receiver regains speed after a cut in the same drill. I’d then test whether that measurement improves on both forecasts above, accounting for the routes players ran in games. The dash-time result gives that experiment a benchmark to beat.
+Two receivers can gain the same amount of speed while carrying different speeds into the turn. That makes the drill useful for choosing reps to compare on film. The results give little reason to add gain to a numerical separation grade. [See the paired receiver traces](slant/matched-receivers.svg).
 
-## Run the NFL analysis
+## Reproduce the study
 
-Download `combine_results.csv`, `games.csv`, and `player_play.csv` from the competition data page into one folder. Run the script with Python 3.9 or later. It uses only the standard library.
+Start with the [setup instructions and file guide](slant/README.md). The [executed notebook](slant/slant-study.ipynb) contains the full analysis, including the earlier-class test, individual errors, cushion adjustment and Tank Dell game example. Obtain the six input CSVs from the [competition data page](https://www.kaggle.com/competitions/nfl-big-data-bowl-2027/data).
+
+## Earlier work and additional samples
+
+The [initial dash-time experiment](rookie_receiver_separation.py) predicts raw separation. Its 2025 errors were 0.209 yards for the training average and 0.246 for dash time. The slant study adjusts for route type and requires a usable Combine rep, so compare models within each experiment.
 
 ```bash
 python3 rookie_receiver_separation.py --data-dir /path/to/csvs
 ```
 
-[NFL analysis code](rookie_receiver_separation.py)
-
-## Additional baseball sample
-
-A separate Python study tests whether pitch type improves swing-and-miss forecasts for José Berríos. It runs offline with the included game counts using Python 3.10 or later.
-
-```bash
-python3 pitch_type_research.py
-```
-
-[MLB analysis code](pitch_type_research.py)
+The separate [baseball sample](pitch_type_research.py) tests whether pitch type helps forecast swings and misses for José Berríos. Run it offline with `python3 pitch_type_research.py`.
