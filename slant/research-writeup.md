@@ -30,6 +30,14 @@ Sixty-nine receivers had a dash time, a slant measurement and at least one measu
 
 At 20 routes, the estimated improvement from adding the sensor measurement was **−0.013 yards**. A player-level bootstrap gave an approximate 95% interval of **−0.036 to +0.011 yards**, holding the fitted models fixed. A small benefit remains plausible. The 2025 class had already been examined in the earlier dash-time study, making another draft class a stronger independent test.
 
+## Did one receiver drive the result?
+
+Adding post-turn gain improved the forecast for four of the 15 receivers. I removed each receiver from the evaluation in turn, keeping the forecasts fixed. Across all 15 checks, adding gain increased mean absolute error by 0.009 to 0.019 yards. No single player reversed the conclusion.
+
+![Change in absolute error for each 2025 receiver; four bars extend left of zero, indicating an improvement.](paired-errors.svg)
+
+I also moved the evaluation back one year. I computed route norms and trained on 18 eligible 2023 receivers, then tested on 17 receivers from 2024. Average errors were 0.206 yards for the training mean, 0.202 for dash time and 0.218 for dash plus gain. Dash time narrowly beat the mean that year. Adding burst made the dash forecast worse in both years. This retrospective check reuses draft classes and the same research design.
+
 ## Does the result change on NFL slants?
 
 Across the linked receivers, 335 rookie slants against man coverage had a separation measurement. Requiring five slants per player left 23 training receivers and seven test receivers. Requiring ten left just one test receiver. At the five-route threshold, the average error was 0.475 yards for the training mean, 0.676 for dash time and 0.669 for dash plus gain. After adjusting for the defender’s starting cushion, adding gain improved on dash time by only 0.002 yards. With seven receivers, this is an exploratory finding.
@@ -45,5 +53,13 @@ Back in the main, mixed-route comparison, marking the Combine turn one frame ear
 I chose these two training receivers using the drill alone. Among receivers with one recorded attempt and gains within 0.05 yards per second of each other, they had the largest difference in speed at the turn. Iosivas finished 0.43 yards above the typical separation for his route mix on 26 measured routes. Douglas finished 0.19 above on 92. Those outcomes describe the players and cannot establish what caused their separation.
 
 A coach can use these traces to pick specific reps for film review. Did the receiver carry speed into the turn? How sharply did he change direction? The next test is to check the estimated turn against film and repeat the forecast on a fresh draft class before giving this measure weight in a prospect grade.
+
+## One play a coach can pull up
+
+![Tank Dell’s tracked Combine slant with the turn and half-second markers, alongside his NFL slant from snap to pass release.](game-slant.svg)
+
+Tank Dell gained 1.38 yd/s in his first recorded Combine left-slant rep by event ID. In his rookie game 2023091001, play 284, he was 1.44 yards from the nearest defender at release. I chose the NFL play closest to the median separation across 195 eligible 2023 rookie man slants with snap and release tracking. The panels use different axis ranges. The NFL trace ends when the ball leaves the quarterback’s hand, even if the route continues.
+
+For weekly film review, use the game and play IDs to find the rep. Check the defender’s starting leverage and pause at pass release. Had the receiver finished changing direction by then? That distinction helps a coach interpret how much space the receiver had time to create. The tracking establishes where the receiver was; the film question remains open.
 
 [Executed research notebook](slant-study.ipynb) · [Primary analysis](analyze.py) · [Follow-up analysis](followup.py)
